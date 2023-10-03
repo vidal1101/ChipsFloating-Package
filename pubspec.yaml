@@ -1,0 +1,17 @@
+name: chips_floating_custom
+description: floating bubble elements to make keywords.
+version: 1.0.0
+homepage: https://github.com/vidal1101
+autor: Rodrigo Vidal Canales
+
+environment:
+  sdk: '>=3.1.0 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  fluttertoast: ^8.2.2
+#otras dependencias que llegue a necesitar
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  dartdoc: any
