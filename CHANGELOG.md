@@ -9,3 +9,10 @@
 
 ## 1.1.1
 - version for Android & Ios
+
+
+## 1.1.2
+- documentation.
+
+## 1.2.2
+- save button, item improvements

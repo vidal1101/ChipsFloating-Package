@@ -7,7 +7,7 @@
 ChipsFloating es un paquete Flutter que te permite mostrar y gestionar palabras clave en forma de burbujas flotantes en tus aplicaciones.
 
 
-![Ejemplo ](assets/demo.jpeg)
+![Ejemplo ](/assets/demo.jpeg)
 
 
 ## Instalación
@@ -16,7 +16,7 @@ Para utilizar ChipsFloating en tu proyecto Flutter, agrega la siguiente dependen
 
 ```yaml
 dependencies:
-  chips_floating: ^1.1.0  
+  chips_floating: ^1.2.2 
 ```
 
 - Uso
@@ -59,6 +59,18 @@ class MyApp extends StatelessWidget {
             deleteIconChip: Icon(Icons.cancel), // Icono de eliminación en las burbujas
             textStyleChip: TextStyle(color: Colors.white), // Estilo de texto en las burbujas
             borderRadius: BorderRadius.circular(20.0), // Bordes redondos de las burbujas
+            fontSizeToast: 14, // Tamaño de fuente para el mensaje de aviso
+            createTagOnSubmit: true, // Crear una etiqueta al enviar el formulario
+            showSaveBotton: true, // Mostrar un botón de guardar
+            textBotton: 'Agregar', // Texto del botón de guardar
+            textStyleBotton: TextStyle(fontSize: 16), // Estilo de texto del botón de guardar
+            heightBotton: 40, // Altura del botón de guardar
+            widthBotton: 100, // Ancho del botón de guardar
+            boxDecorationBotton: BoxDecoration(
+              color: Colors.blue, // Color de fondo del botón de guardar
+              borderRadius: BorderRadius.circular(10.0), // Bordes redondos del botón de guardar
+            ),
+            spacingTextBotton: 8, // Espacio vertical entre el campo de entrada y el botón de guardar
           ),
         ),
       ),
@@ -70,6 +82,7 @@ class MyApp extends StatelessWidget {
 
 ```
 
+
 # Características
 
 - Muestra palabras clave como burbujas flotantes.
@@ -77,12 +90,46 @@ class MyApp extends StatelessWidget {
 - Personalización de colores y comportamiento.
 - Limita el número de palabras clave que se pueden agregar.
 
+
+## Propiedades
+
+El widget `ChipsFloating` admite las siguientes propiedades personalizables:
+
+- `inputDecoration`: Configuración de decoración para el campo de entrada.
+- `controller`: Controlador del campo de entrada.
+- `displayChipsBelow`: Booleano que controla si las burbujas se muestran debajo del campo de entrada.
+- `maxKeywords`: Límite máximo de palabras clave.
+- `keywords`: Lista de palabras clave.
+- `maxKeywordsToastMessage`: Mensaje que se muestra cuando se alcanza el límite máximo de palabras clave.
+- `toastBackgroundColor`: Color de fondo del mensaje de aviso.
+- `toastTextColor`: Color del texto del mensaje de aviso.
+- `deleteIconColorChip`: Color del icono de eliminación en las burbujas.
+- `chipColor`: Color de las burbujas.
+- `spacingChip`: Espacio horizontal entre las burbujas.
+- `runSpacingChip`: Espacio vertical entre las burbujas si hay múltiples filas.
+- `elevationChip`: Elevación de las burbujas.
+- `spacingElement`: Espacio vertical entre los elementos.
+- `directionScroll`: Dirección de desplazamiento de las burbujas.
+- `deleteIconChip`: Icono de eliminación en las burbujas.
+- `textStyleChip`: Estilo de texto en las burbujas.
+- `fontSizeToast`: Tamaño de fuente para el mensaje de aviso.
+- `createTagOnSubmit`: Booleano que controla si se crea una etiqueta al enviar el formulario.
+- `showSaveBotton`: Booleano que controla si se muestra un botón de guardar.
+- `textBotton`: Texto del botón de guardar.
+- `textStyleBotton`: Estilo de texto del botón de guardar.
+- `heightBotton`: Altura del botón de guardar.
+- `widthBotton`: Ancho del botón de guardar.
+- `boxDecorationBotton`: Decoración del botón de guardar.
+
+Asegúrate de personalizar estas propiedades según tus necesidades específicas en tu aplicación Flutter.
+
+
 # Contribución
 
 ¡Contribuciones son bienvenidas! Si deseas contribuir al desarrollo de ChipsFloating, por favor sigue estos pasos:
 
 Fork el repositorio.
-Clona tu fork: git clone https://github.com/tu_usuario/chips_floating.git.
+Clona tu fork: git clone https://github.com/vidal1101/chips_floating.git.
 Crea una nueva rama para tu contribución: git checkout -b mi-contribucion.
 Realiza tus cambios y commit: git commit -m 'Añade una nueva característica'.
 Empuja tus cambios a tu fork: git push origin mi-contribucion.

@@ -77,6 +77,15 @@ class ChipsFloating extends StatefulWidget {
   final Axis directionScroll;
   final Widget deleteIconChip;
   final TextStyle textStyleChip;
+  final double fontSizeToast;
+  final bool createTagOnSubmit;
+  final bool showSaveBotton;
+  final double spacingTextBotton;
+  final double heightBotton;
+  final double widthBotton;
+  final BoxDecoration? boxDecorationBotton;
+  final String textBotton;
+  final TextStyle? textStyleBotton;
 
   ChipsFloating({
     Key? key,
@@ -97,6 +106,15 @@ class ChipsFloating extends StatefulWidget {
     this.runSpacingChip = 8.0, 
     this.elevationChip = 3, 
     this.spacingElement = 10,
+    this.fontSizeToast = 14, 
+    this.createTagOnSubmit = true,
+    this.showSaveBotton = true,
+    this.textBotton = 'Agregar',
+    this.textStyleBotton,
+    this.heightBotton = 40, 
+    this.widthBotton = 100, 
+    this.boxDecorationBotton ,
+    this.spacingTextBotton = 10,
     this.directionScroll = Axis.vertical ,//elemento aun no aplica.
 
   }) : super(key: key);
@@ -126,32 +144,59 @@ class _ChipsFloatingState extends State<ChipsFloating> {
   }
 
   Widget _buildTextFormField() {
-    return TextFormField(
-      controller: widget.controller,
-      decoration: widget.inputDecoration,
-      onChanged: (value) async {
-        // Manejar cambios en el TextFormField si es necesario.
-      },
-      onFieldSubmitted: (value) {
-        if (value.isNotEmpty) {
-          if (widget.keywords.length < widget.maxKeywords) {
-            setState(() {
-              widget.keywords.add(value);
-              widget.controller.clear();
-            });
-          } else {
-            // Mostrar mensaje de límite máximo alcanzado usando FlutterToast.
-            Fluttertoast.showToast(
-              msg: widget.maxKeywordsToastMessage,
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              backgroundColor: widget.toastBackgroundColor,
-              textColor: widget.toastTextColor,
-            );
-          }
-        }
-      },
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: [
+        //texto de la palabra clave.
+        TextFormField(
+          controller: widget.controller,
+          decoration: widget.inputDecoration,
+          onChanged: (value) async {
+            // Manejar cambios en el TextFormField si es necesario.
+          },
+          onFieldSubmitted: (widget.createTagOnSubmit) ? 
+            (value) => _addWord(value): null,
+        ),
+        //boton de guardado.
+        SizedBox(height: widget.spacingTextBotton,),
+        if(widget.showSaveBotton)
+          GestureDetector(
+            onTap: () => _addWord(widget.controller.text),
+            child: Container(
+              height: widget.heightBotton,
+              width: widget.widthBotton,
+              decoration: widget.boxDecorationBotton,
+              child: Center(
+                child: Text( widget.textBotton, 
+                  style: widget.textStyleBotton,),
+              ),
+            ),
+          ),
+
+      ],
     );
+  }
+
+  void _addWord(String value)async{
+    if (value.isNotEmpty) {
+      if (widget.keywords.length < widget.maxKeywords) {
+        setState(() {
+          widget.keywords.add(value);
+          widget.controller.clear();
+        });
+      } else {
+        // Mostrar mensaje de límite máximo alcanzado usando FlutterToast.
+        Fluttertoast.showToast(
+          msg: widget.maxKeywordsToastMessage,
+          toastLength: Toast.LENGTH_LONG,
+          gravity: ToastGravity.BOTTOM,
+          backgroundColor: widget.toastBackgroundColor,
+          textColor: widget.toastTextColor,
+          fontSize: widget.fontSizeToast,
+        );
+      }
+    }
   }
 
   Widget _buildChips() {
