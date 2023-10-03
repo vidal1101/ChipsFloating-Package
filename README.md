@@ -14,7 +14,7 @@ Para utilizar ChipsFloating en tu proyecto Flutter, agrega la siguiente dependen
 
 ```yaml
 dependencies:
-  chips_floating: ^1.0.0  # Reemplaza con la versión actual
+  chips_floating: ^1.0.0  
 ```
 
 - Uso
