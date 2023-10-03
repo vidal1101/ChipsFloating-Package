@@ -14,7 +14,7 @@ Para utilizar ChipsFloating en tu proyecto Flutter, agrega la siguiente dependen
 
 ```yaml
 dependencies:
-  chips_floating: ^1.0.0  
+  chips_floating: ^1.1.0  
 ```
 
 - Uso
@@ -24,11 +24,8 @@ Para utilizar ChipsFloating, simplemente agrega el widget a tu árbol de widgets
 
 ``` Dart
 import 'package:flutter/material.dart';
-import 'package:chips_floating/chips_floating.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
@@ -36,23 +33,39 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Ejemplo de ChipsFloating'),
+          title: Text('ChipsFloating Example'),
         ),
         body: Center(
           child: ChipsFloating(
-            inputDecoration: InputDecoration(labelText: 'Palabra clave'),
+            inputDecoration: InputDecoration(
+              labelText: 'Agregar palabra clave',
+            ),
             controller: TextEditingController(),
-            keywords: [],
-            maxKeywords: 5,
-            maxKeywordsToastMessage: 'Se alcanzó el límite máximo de palabras clave',
-            displayChipsBelow: true,
-            chipColor: Colors.blue,
+            keywords: [], // Lista de palabras clave
+            maxKeywords: 5, // Límite máximo de palabras clave
+            maxKeywordsToastMessage: '¡Se alcanzó el límite máximo de palabras clave!',
+            displayChipsBelow: true, // Muestra las burbujas debajo del campo de entrada
+            chipColor: Colors.blueAccent, // Color de las burbujas
+            toastBackgroundColor: Colors.red, // Color de fondo del mensaje de aviso
+            toastTextColor: Colors.white, // Color del texto del mensaje de aviso
+            deleteIconColorChip: Colors.black, // Color del icono de eliminación en las burbujas
+            spacingChip: 8.0, // Espacio horizontal entre las burbujas
+            runSpacingChip: 8.0, // Espacio vertical entre las burbujas
+            elevationChip: 3, // Elevación de las burbujas
+            spacingElement: 10, // Espacio vertical entre los elementos
+            directionScroll: Axis.vertical, // Dirección de desplazamiento de las burbujas
+            deleteIconChip: Icon(Icons.cancel), // Icono de eliminación en las burbujas
+            textStyleChip: TextStyle(color: Colors.white), // Estilo de texto en las burbujas
+            borderRadius: BorderRadius.circular(20.0), // Bordes redondos de las burbujas
           ),
         ),
       ),
     );
   }
 }
+
+
+
 ```
 
 # Características

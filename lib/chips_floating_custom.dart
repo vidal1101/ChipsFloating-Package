@@ -1,13 +1,7 @@
 
-///
-/// Autor: Rodrigo Vidal Canales
-/// GitHub: [vidal1101](https://github.com/vidal1101)
-/// 
-/// 
 
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-
 
 /// Un widget personalizado para mostrar y gestionar palabras clave en forma de burbujas flotantes.
 ///
@@ -18,30 +12,71 @@ import 'package:fluttertoast/fluttertoast.dart';
 /// Ejemplo de uso:
 ///
 /// ```dart
-/// ChipsFloating(
-///   inputDecoration: InputDecoration(labelText: 'Etiqueta'),
-///   controller: _controller,
-///   keywords: _keywords,
-///   maxKeywords: 5,
-///   maxKeywordsToastMessage: 'Se alcanzó el límite máximo de palabras clave',
-///   displayChipsBelow: true,
-///   chipColor: Colors.green,
-///   toastBackgroundColor: Colors.red,
-///   toastTextColor: Colors.white,
-/// )
+/// import 'package:flutter/material.dart';
+///
+/// void main() => runApp(MyApp());
+///
+/// class MyApp extends StatelessWidget {
+///   @override
+///   Widget build(BuildContext context) {
+///     return MaterialApp(
+///       home: Scaffold(
+///         appBar: AppBar(
+///           title: Text('ChipsFloating Example'),
+///         ),
+///         body: Center(
+///           child: ChipsFloating(
+///             inputDecoration: InputDecoration(
+///               labelText: 'Agregar palabra clave',
+///             ),
+///             controller: TextEditingController(),
+///             keywords: [], // Lista de palabras clave
+///             maxKeywords: 5, // Límite máximo de palabras clave
+///             maxKeywordsToastMessage: '¡Se alcanzó el límite máximo de palabras clave!',
+///             displayChipsBelow: true, // Muestra las burbujas debajo del campo de entrada
+///             chipColor: Colors.blueAccent, // Color de las burbujas
+///             toastBackgroundColor: Colors.red, // Color de fondo del mensaje de aviso
+///             toastTextColor: Colors.white, // Color del texto del mensaje de aviso
+///             deleteIconColorChip: Colors.black, // Color del icono de eliminación en las burbujas
+///             spacingChip: 8.0, // Espacio horizontal entre las burbujas
+///             runSpacingChip: 8.0, // Espacio vertical entre las burbujas
+///             elevationChip: 3, // Elevación de las burbujas
+///             spacingElement: 10, // Espacio vertical entre los elementos
+///             directionScroll: Axis.vertical, // Dirección de desplazamiento de las burbujas
+///             deleteIconChip: Icon(Icons.cancel), // Icono de eliminación en las burbujas
+///             textStyleChip: TextStyle(color: Colors.white), // Estilo de texto en las burbujas
+///             borderRadius: BorderRadius.circular(20.0), // Bordes redondos de las burbujas
+///           ),
+///         ),
+///       ),
+///     );
+///   }
+/// }
 /// ```
+///
+/// Asegúrate de personalizar y expandir esta documentación según tus necesidades y requerimientos específicos.
+
 
 class ChipsFloating extends StatefulWidget {
 
   final InputDecoration inputDecoration;
   final TextEditingController controller;
   final bool displayChipsBelow;
-  final Color chipColor;
   final int maxKeywords;
   final List<String> keywords;
   final String maxKeywordsToastMessage;
   final Color toastBackgroundColor;
   final Color toastTextColor;
+  final Color deleteIconColorChip;
+  final Color chipColor;
+  final double spacingChip;
+  final double runSpacingChip;
+  final BorderRadiusGeometry borderRadius;
+  final double elevationChip;
+  final double spacingElement;
+  final Axis directionScroll;
+  final Widget deleteIconChip;
+  final TextStyle textStyleChip;
 
   ChipsFloating({
     Key? key,
@@ -50,10 +85,20 @@ class ChipsFloating extends StatefulWidget {
     required this.keywords,
     required this.maxKeywords,
     required this.maxKeywordsToastMessage,
+    required this.borderRadius,
+    required this.deleteIconChip,
+    required this.textStyleChip ,
     this.displayChipsBelow = false,
     this.chipColor = Colors.blueAccent,
     this.toastBackgroundColor = Colors.red,
     this.toastTextColor = Colors.white,
+    this.deleteIconColorChip = Colors.black,
+    this.spacingChip = 8.0,
+    this.runSpacingChip = 8.0, 
+    this.elevationChip = 3, 
+    this.spacingElement = 10,
+    this.directionScroll = Axis.vertical ,//elemento aun no aplica.
+
   }) : super(key: key);
 
   @override
@@ -67,12 +112,14 @@ class _ChipsFloatingState extends State<ChipsFloating> {
         ? Column(
             children: [
               _buildTextFormField(),
+              SizedBox(height: widget.spacingElement ,),
               _buildChips(),
             ],
           )
         : Column(
             children: [
               _buildChips(),
+              SizedBox(height: widget.spacingElement ,),
               _buildTextFormField(),
             ],
           );
@@ -109,11 +156,19 @@ class _ChipsFloatingState extends State<ChipsFloating> {
 
   Widget _buildChips() {
     return Wrap(
+      spacing: widget.spacingChip, // Espacio horizontal entre los InputChips
+      runSpacing: widget.runSpacingChip, // Espacio vertical entre los InputChips si hay múltiples filas
       children: widget.keywords.map((keyword) {
         return InputChip(
+          deleteIcon: widget.deleteIconChip,
+          deleteIconColor: widget.deleteIconColorChip,
+          shape: RoundedRectangleBorder(
+            borderRadius: widget.borderRadius // Bordes redondos
+          ),
+          elevation: widget.elevationChip, // Agregar sombra
           label: Padding(
-            padding: const EdgeInsets.all(3.0),
-            child: Text(keyword),
+            padding: const EdgeInsets.all(2.0),
+            child: Text(keyword, style:  widget.textStyleChip,),
           ),
           onDeleted: () {
             setState(() {

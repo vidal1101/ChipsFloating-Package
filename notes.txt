@@ -1,0 +1,15 @@
+notas para el despligue , cambios 
+
+1. revisar el pubspec.yaml. 
+2. validar version en el Changelog.md
+3. validar documentacion en el readme.md 
+4. generar doc con:
+    flutter pub run dartdoc
+
+5.revisar que cumpla las normativas para publicar con:
+    flutter pub publish --dry-run
+
+6.publicar al pub.dev 
+    flutter pub publish
+
+7. lanzar a github
