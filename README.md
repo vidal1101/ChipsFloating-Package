@@ -6,7 +6,9 @@
 
 ChipsFloating es un paquete Flutter que te permite mostrar y gestionar palabras clave en forma de burbujas flotantes en tus aplicaciones.
 
-![Ejemplo de uso de ChipsFloating](example.gif)
+
+![Ejemplo ](assets/demo.jpeg)
+
 
 ## Instalación
 

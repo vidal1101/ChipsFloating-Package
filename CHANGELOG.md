@@ -6,3 +6,6 @@
 
 ## 1.1.0
 - improvements to the bubble element and more customizable parameters
+
+## 1.1.1
+- version for Android & Ios
